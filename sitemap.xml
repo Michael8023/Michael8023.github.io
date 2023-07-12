@@ -137,7 +137,7 @@
 
   
   <url>
-    <loc>http://michael8023.github.io/tags/%E7%94%9F%E6%B4%BB/</loc>
+    <loc>http://michael8023.github.io/tags/UI/</loc>
     <lastmod>2023-07-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -151,7 +151,14 @@
   </url>
   
   <url>
-    <loc>http://michael8023.github.io/tags/UI/</loc>
+    <loc>http://michael8023.github.io/tags/%E7%94%9F%E6%B4%BB/</loc>
+    <lastmod>2023-07-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://michael8023.github.io/tags/%E5%B7%A5%E7%A8%8B%E9%83%A8%E7%BD%B2/</loc>
     <lastmod>2023-07-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -166,13 +173,6 @@
   
   <url>
     <loc>http://michael8023.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/</loc>
-    <lastmod>2023-07-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://michael8023.github.io/tags/%E5%B7%A5%E7%A8%8B%E9%83%A8%E7%BD%B2/</loc>
     <lastmod>2023-07-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
