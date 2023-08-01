@@ -553,3 +553,7 @@ h6::before {
   font-size: 0.66rem;
   margin-top: 0rem;
 }
+.loading-img {
+  background: url(https://s1.ax1x.com/2022/10/31/xTizDI.jpg) no-repeat center center;
+  background-size: cover;
+}
