@@ -6,7 +6,7 @@
   <link href="http://michael8023.github.io/atom.xml" rel="self"/>
   
   <link href="http://michael8023.github.io/"/>
-  <updated>2023-08-02T13:38:40.413Z</updated>
+  <updated>2023-08-03T08:54:42.987Z</updated>
   <id>http://michael8023.github.io/</id>
   
   <author>
@@ -17,13 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>LSTM</title>
+    <link href="http://michael8023.github.io/post/48c60d0d.html"/>
+    <id>http://michael8023.github.io/post/48c60d0d.html</id>
+    <published>2023-08-03T08:52:33.000Z</published>
+    <updated>2023-08-03T08:54:42.987Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h1><blockquote><p>REFERENCE：<a href="https://blog.csdn.net/v_JULY_v/article/details/89894058?ops_request_misc=%7B%22request%5Fid%22%3A%22169098645416800213056045%22%2C%22scm%22%3A%2220140713.130102334..%22%7D&amp;request_id=169098645416800213056045&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-89894058-null-null.142^v92^insert_down28v1&amp;utm_term=LSTM&amp;spm=1018.2226.3001.4187">如何从RNN起步，一步一步通俗理解LSTM_rnn lstm_v_JULY_v的博客-CSDN博客</a></p><p>RNN与传统神经网络不同的是可以获取先前的信息，相当于把多个神经网络连接在一起。<img src="https://img-blog.csdnimg.cn/img_convert/3cacf40c4f8fce825dab90e4de98f522.png" alt="img"></p><p>RNN的局限：长期依赖问题</p><p>​    当需要的信息和当前信息的位置非常远的情况下，RNN就会失去这种连接到先前信息的能力，换言之，RNN具有短时记忆，所以我们需要一种结构可以有选择性的存储或者遗忘先前的信息。</p><p>RNN的变体——LSTM可以在一定程度上解决梯度消失和梯度爆炸这两个问题</p></blockquote><p>LSTM可以学习只保留相关信息来预测，并忘记不相关的数据。</p><p><img src="https://img-blog.csdnimg.cn/img_convert/05ab9341820ee5ca60c5a23252fdd0a6.png" alt="img"></p><p><img src="https://img-blog.csdnimg.cn/img_convert/37d708d09eba4de2d07576dd7967fae3.png" alt="img"></p><p>与RNN相比加入了三个sigmoid函数，有利于更新或者忘记信息</p><ul><li>任何数乘以0都得0，这部分信息就删除</li><li>乘以1得到本身，信息保留</li></ul><p>LSTM拥有三种类型的门结构：遗忘门/忘记门、输入门和输出门，来保护和控制细胞状态。下面，我们来介绍这三个门。</p><h3 id="忘记门-遗忘门"><a href="#忘记门-遗忘门" class="headerlink" title="忘记门/遗忘门"></a>忘记门/遗忘门</h3><p>读取上一个输出和当前输入，做一个sigmoid非线性映射，然后输出一个向量（向量每一个维度都在0到1之间），最后与细胞状态$C_{t-1}$相乘<img src="https://img-blog.csdnimg.cn/img_convert/452fa56a2d04c1bb93732c08b5e6492a.png" alt="img"></p><p><img src="https://img-blog.csdnimg.cn/img_convert/33d34e6909bd9e989fbf7094d97890c4.gif" alt="img"></p><h3 id="输入门"><a href="#输入门" class="headerlink" title="输入门"></a>输入门</h3><p>确定什么样的新信息被存放在细胞状态中，其中</p><ul><li>sigmoid层决定什么值我们需要更新</li><li>tanh层创建一个新的候选向量$\widetilde{C_t}$，会被加入到状态中</li></ul><p><img src="https://img-blog.csdnimg.cn/img_convert/63bc710705b2eecf74fd484c9710ba64.png" alt="img"></p><p><img src="https://img-blog.csdnimg.cn/img_convert/cc4a872a1f878a945c6afd912a6e2ff5.gif" alt="img"></p><h3 id="细胞状态"><a href="#细胞状态" class="headerlink" title="细胞状态"></a>细胞状态</h3><p>把旧状态与$f_t$相乘，丢弃掉不需要的信息，接着加上$i_t*\widetilde{C_t}$这就是新的候选值<img src="https://img-blog.csdnimg.cn/img_convert/c38a0b8f9bbd4d078d160d3f4d921a34.png" alt="img"></p><p><img src="https://img-blog.csdnimg.cn/img_convert/3c9d64c8ac82b985769cb0903891dabe.gif" alt="img"></p><h3 id="输出门"><a href="#输出门" class="headerlink" title="输出门"></a>输出门</h3><p>基于细胞状态，通过tanh进行处理，得到一个-1到1之间的值，并将它和sigmoid门的输出相乘</p><blockquote><p>在语言模型的例子中，因为他就看到了一个代词，可能需要输出与一个动词相关的信息。例如，可能输出是否代词是单数还是负数，这样如果是动词的话，我们也知道动词需要进行的词形变化，进而输出信息。</p></blockquote><p><img src="https://img-blog.csdnimg.cn/img_convert/a689a85822d6937abfd118a72e46c2e7.png" alt="img"></p><p><img src="https://img-blog.csdnimg.cn/img_convert/fc0d3305d75e0bb3b77602ffc524843e.gif" alt="img"></p><h3 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h3><p>将<strong>忘记门和输入</strong>合成了一个单一的更新门。同样还混合了细胞状态和隐藏状态。</p><p><img src="https://img-blog.csdnimg.cn/img_convert/d90834b68537f786b8d8c9fe656cf37c.png" alt="img"></p><p>$1-z_t$是需要忘记的，而$r_t$相当于是一个备份，最终在$\widetilde{h}$做了一个tanh的变化。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;LSTM&quot;&gt;&lt;a href=&quot;#LSTM&quot; class=&quot;headerlink&quot; title=&quot;LSTM&quot;&gt;&lt;/a&gt;LSTM&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;REFERENCE：&lt;a href=&quot;https://blog.csdn.net/v_JULY_v</summary>
+      
+    
+    
+    
+    <category term="学习" scheme="http://michael8023.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="神经网络" scheme="http://michael8023.github.io/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+  <entry>
     <title>激活函数</title>
     <link href="http://michael8023.github.io/post/f86c970.html"/>
     <id>http://michael8023.github.io/post/f86c970.html</id>
     <published>2023-08-02T13:35:50.000Z</published>
-    <updated>2023-08-02T13:38:40.413Z</updated>
+    <updated>2023-08-02T13:42:05.357Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="常用的激活函数以及优缺点分析"><a href="#常用的激活函数以及优缺点分析" class="headerlink" title="常用的激活函数以及优缺点分析"></a>常用的激活函数以及优缺点分析</h1><blockquote><p>activation function：旨在帮助网络学习数据中的复杂模式，对所有的隐藏层和输出层添加一个非线性的操作，使得输出更为复杂，表达能力更强。</p></blockquote><h3 id="Sigmoid函数"><a href="#Sigmoid函数" class="headerlink" title="Sigmoid函数"></a>Sigmoid函数</h3><script type="math/tex; mode=display">f(x)=\frac{1}{1+e^{-x}}</script><p><img src="https://img-blog.csdnimg.cn/9f742a7d33a640dfbffb5f17fbaefa38.png" alt="img"></p><p>优点：</p><ol><li>值域为[0，1]，可用于将预测概率作为输出的模型，比如用于表示二分类的类别或者用于表示置信度。</li><li>对每个神经元的输出进行了归一化。</li><li>函数连续可导，可以提供平滑的梯度值，防止模型训练过程中出现梯度突变。</li></ol><p>不足：</p><ol><li>由于导数特性，反向传播时会出现梯度消失，参数更新缓慢</li><li>输出大于0，下一层会得到上一层输出全为正信号</li><li>需要指数运算，计算量大。</li></ol><h3 id="Tanh函数"><a href="#Tanh函数" class="headerlink" title="Tanh函数"></a>Tanh函数</h3><script type="math/tex; mode=display">f(x)=\frac{e^x-e^{-x}}{e^x+e^{-x}}</script><p><img src="https://img-blog.csdnimg.cn/31c3c6727cfb4d268d0134e2449ad0ea.png" alt="img"></p><p>优点：</p><ol><li>完全可微分，反对称，对称中心在原点</li><li>打破网络层与网络层之间的线性关系，区间[-1，1]</li><li>一般tanh用于隐藏层，sigmoid用于输出层</li></ol><p>缺点：</p><ol><li>两端梯度较小</li><li>需要指数运算</li><li>层数较多时，反向传播链式求导，多项相乘，函数进入饱和区（导数接近于0的地方），梯度消失</li></ol><h3 id="ReLU"><a href="#ReLU" class="headerlink" title="ReLU"></a>ReLU</h3><script type="math/tex; mode=display">f(x)=\begin{cases}x,x\geq 0\\0,x<0\end{cases}</script><p><img src="https://img-blog.csdnimg.cn/bd381a8eb19e45c0ba650f32825220c8.png" alt="img"></p><p>优点：</p><ol><li>正输入是线性的，收敛速度快。</li><li>输入大于0时，梯度为1，有效比卖你梯度消失和梯度爆炸。</li><li>生物学启发，输入为负值的时候，神经元无效。</li></ol><p>缺点：</p><ol><li>负值时会产生“Dead Neuron”。</li><li>输出不是以0为中心的。</li></ol><h3 id="Leaky-ReLU"><a href="#Leaky-ReLU" class="headerlink" title="Leaky ReLU"></a>Leaky ReLU</h3><script type="math/tex; mode=display">f(x)=\begin{cases}x,x\geq0\\\lambda x,x<0\end{cases},\lambda\in(0,1)</script><p><img src="https://img-blog.csdnimg.cn/86b92d196e98462d91ae83e6d7dc7762.png" alt="img"></p><p>优点：</p><ol><li>与ReLU相比，把非常小的线性分量给予负输入来调整零梯度的问题，有助于扩大ReLU的范围</li><li>使得负轴信息不会全部丢失，确保训练模型过程中神经元权重在输入小于0的时候依然会得到更新</li></ol><p>缺点：</p><ol><li>减少静默神经元，慢速的梯度学习</li><li>实践未证明效果更好</li></ol>]]></content>
+    <content type="html"><![CDATA[<h1 id="常用的激活函数以及优缺点分析"><a href="#常用的激活函数以及优缺点分析" class="headerlink" title="常用的激活函数以及优缺点分析"></a>常用的激活函数以及优缺点分析</h1><blockquote><p>activation function：旨在帮助网络学习数据中的复杂模式，对所有的隐藏层和输出层添加一个非线性的操作，使得输出更为复杂，表达能力更强。</p></blockquote><h3 id="Sigmoid函数"><a href="#Sigmoid函数" class="headerlink" title="Sigmoid函数"></a>Sigmoid函数</h3><script type="math/tex; mode=display">f(x)=\frac{1}{1+e^{-x}}</script><p><img src="https://s1.ax1x.com/2023/08/02/pPPOFbt.png" alt="img"></p><p>优点：</p><ol><li>值域为[0，1]，可用于将预测概率作为输出的模型，比如用于表示二分类的类别或者用于表示置信度。</li><li>对每个神经元的输出进行了归一化。</li><li>函数连续可导，可以提供平滑的梯度值，防止模型训练过程中出现梯度突变。</li></ol><p>不足：</p><ol><li>由于导数特性，反向传播时会出现梯度消失，参数更新缓慢</li><li>输出大于0，下一层会得到上一层输出全为正信号</li><li>需要指数运算，计算量大。</li></ol><h3 id="Tanh函数"><a href="#Tanh函数" class="headerlink" title="Tanh函数"></a>Tanh函数</h3><script type="math/tex; mode=display">f(x)=\frac{e^x-e^{-x}}{e^x+e^{-x}}</script><p><img src="https://s1.ax1x.com/2023/08/02/pPPOn2Q.png" alt="img"></p><p>优点：</p><ol><li>完全可微分，反对称，对称中心在原点</li><li>打破网络层与网络层之间的线性关系，区间[-1，1]</li><li>一般tanh用于隐藏层，sigmoid用于输出层</li></ol><p>缺点：</p><ol><li>两端梯度较小</li><li>需要指数运算</li><li>层数较多时，反向传播链式求导，多项相乘，函数进入饱和区（导数接近于0的地方），梯度消失</li></ol><h3 id="ReLU"><a href="#ReLU" class="headerlink" title="ReLU"></a>ReLU</h3><script type="math/tex; mode=display">f(x)=\begin{cases}x,x\geq 0\\0,x<0\end{cases}</script><p><img src="https://s1.ax1x.com/2023/08/02/pPPOMKs.png" alt="img"></p><p>优点：</p><ol><li>正输入是线性的，收敛速度快。</li><li>输入大于0时，梯度为1，有效比卖你梯度消失和梯度爆炸。</li><li>生物学启发，输入为负值的时候，神经元无效。</li></ol><p>缺点：</p><ol><li>负值时会产生“Dead Neuron”。</li><li>输出不是以0为中心的。</li></ol><h3 id="Leaky-ReLU"><a href="#Leaky-ReLU" class="headerlink" title="Leaky ReLU"></a>Leaky ReLU</h3><script type="math/tex; mode=display">f(x)=\begin{cases}x,x\geq0\\\lambda x,x<0\end{cases},\lambda\in(0,1)</script><p><img src="https://s1.ax1x.com/2023/08/02/pPPO3V0.png" alt="img"></p><p>优点：</p><ol><li>与ReLU相比，把非常小的线性分量给予负输入来调整零梯度的问题，有助于扩大ReLU的范围</li><li>使得负轴信息不会全部丢失，确保训练模型过程中神经元权重在输入小于0的时候依然会得到更新</li></ol><p>缺点：</p><ol><li>减少静默神经元，慢速的梯度学习</li><li>实践未证明效果更好</li></ol>]]></content>
     
     
       
