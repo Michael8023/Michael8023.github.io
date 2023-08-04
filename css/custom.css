@@ -170,9 +170,9 @@
   }
   
   /* 头图透明 */
-  /* #page-header {
+  #page-header {
     background: transparent !important;
-  } */
+  }
   
   #rightside > div > button {
     border-radius: 5px;
