@@ -2,7 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://michael8023.github.io/post/1b1a2dda.html</loc>
+    
+    <lastmod>2023-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://michael8023.github.io/post/a7c623a1.html</loc>
+    
+    <lastmod>2023-08-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://michael8023.github.io/post/a206aef0.html</loc>
     
     <lastmod>2023-08-04</lastmod>
     
@@ -84,24 +102,6 @@
   
   <url>
     <loc>http://michael8023.github.io/post/233853f2.html</loc>
-    
-    <lastmod>2023-08-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://michael8023.github.io/post/a206aef0.html</loc>
-    
-    <lastmod>2023-08-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://michael8023.github.io/post/1b1a2dda.html</loc>
     
     <lastmod>2023-08-04</lastmod>
     
@@ -207,7 +207,7 @@
   </url>
   
   <url>
-    <loc>http://michael8023.github.io/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</loc>
+    <loc>http://michael8023.github.io/tags/%E7%94%9F%E6%B4%BB/</loc>
     <lastmod>2023-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -221,7 +221,7 @@
   </url>
   
   <url>
-    <loc>http://michael8023.github.io/tags/%E7%94%9F%E6%B4%BB/</loc>
+    <loc>http://michael8023.github.io/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</loc>
     <lastmod>2023-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -249,14 +249,14 @@
   </url>
   
   <url>
-    <loc>http://michael8023.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/</loc>
+    <loc>http://michael8023.github.io/tags/python/</loc>
     <lastmod>2023-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://michael8023.github.io/tags/python/</loc>
+    <loc>http://michael8023.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/</loc>
     <lastmod>2023-08-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
